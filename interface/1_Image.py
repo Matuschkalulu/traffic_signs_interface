@@ -18,7 +18,7 @@ def local_css(file_name):
         st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
 
 # Loading CSS
-url_css = os.path.join(os.getcwd(), 'pages', 'frontend', 'css', 'streamlit.css')
+url_css = os.path.join(os.getcwd(),'interface', 'pages', 'frontend', 'css', 'streamlit.css')
 local_css(url_css)
 
 
