@@ -48,13 +48,13 @@ if uploaded_file is not None:
         files = {"file": image_data}
         print (files)
         #response = requests.post("https://trafficsignscode-ugznwmrhlq-ew.a.run.app/ImagePrediction/", files=files)
-        response = requests.post("http://127.0.0.1:8080/ImagePrediction", files=files)
+        response = requests.post("https://trafficsignscode-ugznwmrhlq-ew.a.run.app/ImagePrediction/", files=files)
         print(response)
         if response.status_code == 200:
             # the prediction result
             prediction = response.json()
             #print(prediction)
-            st.image(os.path.join(os.getcwd(), 'image0.png'))
+            st.image('image0.png')
             if prediction['Actual Prediction Value'][0] >= 0.4:
                 st.error('This is an unreadable!') #, icon=f"\N:rotating_light:")
                 print(prediction)
