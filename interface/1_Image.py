@@ -33,8 +33,9 @@ uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png
 
 st.markdown('<style>...</style>', unsafe_allow_html=True)
 
+with st.columns(2)[0]:
 
-if uploaded_file is not None:
+ if uploaded_file is not None:
     # displaying the uploaded image
     image = Image.open(uploaded_file)
     print(image)
