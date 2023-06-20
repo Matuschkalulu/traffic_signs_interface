@@ -5,7 +5,7 @@ import os
 st.title("Traffic Sign Recognition")
 st.write("Classification on images")
 
-st.sidebar.image("https://static.vecteezy.com/system/resources/previews/009/458/871/original/traffic-signs-icon-logo-design-template-vector.jpg", width=100)
+st.sidebar.image("https://static.vecteezy.com/system/resources/previews/002/538/982/non_2x/traffic-concept-drawing-vector.jpg", width=200)
 
 def local_css(file_name):
     with open(file_name) as f:

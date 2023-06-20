@@ -11,14 +11,14 @@ import cv2
 st.title("Traffic Sign Recognition")
 st.write("Identify traffic signs in images.")
 
-st.sidebar.image("https://static.vecteezy.com/system/resources/previews/009/458/871/original/traffic-signs-icon-logo-design-template-vector.jpg", width=100)
+st.sidebar.image("https://static.vecteezy.com/system/resources/previews/002/538/982/non_2x/traffic-concept-drawing-vector.jpg", width=200)
 
 def local_css(file_name):
     with open(file_name) as f:
         st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
 
 # Loading CSS
-url_css = os.path.join(os.getcwd(), 'pages', 'frontend', 'css', 'streamlit.css')
+url_css = os.path.join(os.getcwd(),'interface', 'pages', 'frontend', 'css', 'streamlit.css')
 local_css(url_css)
 
 
