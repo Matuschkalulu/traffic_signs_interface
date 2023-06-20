@@ -15,7 +15,7 @@ def local_css(file_name):
         st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
 
 # Loading CSS
-url_css = os.path.join(os.getcwd(), 'pages', 'frontend', 'css', 'streamlit.css')
+url_css = os.path.join(os.getcwd(),'interface', 'pages', 'frontend', 'css', 'streamlit.css')
 local_css(url_css)
 
 
@@ -33,9 +33,9 @@ st.markdown('<style>...</style>', unsafe_allow_html=True)
 
 if uploaded_file is not None:
     # displaying the uploaded image
-    video_file = open(uploaded_file, 'rb')
-    video_bytes = video_file.read()
-    st.video(video_bytes, caption="Uploaded Video", use_column_width=True)
+    #video_file = open(uploaded_file, 'rb')
+    video_bytes = uploaded_file.read()
+    st.video(video_bytes)
 
     # making a prediction
     if st.button("Classify"):
