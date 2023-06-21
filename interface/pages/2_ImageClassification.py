@@ -2,7 +2,8 @@ import streamlit as st
 import requests
 from PIL import Image
 import os
-import io
+import subprocess
+
 from io import BytesIO
 import numpy as np
 import cv2
@@ -39,6 +40,7 @@ if uploaded_file is not None:
     image = Image.open(uploaded_file)
     print(image)
     placeholder = st.image(image, caption="Uploaded Image", use_column_width=True)
+
     #pred_image = Image.open(io.BytesIO(image_bytes))
 
     # making a prediction
@@ -52,6 +54,7 @@ if uploaded_file is not None:
         image_path = os.path.join(os.getcwd(),'output_image.png')
         if os.path.exists(image_path):
             os.remove(image_path)
+
 
         print(response)
         if response.status_code == 200:
