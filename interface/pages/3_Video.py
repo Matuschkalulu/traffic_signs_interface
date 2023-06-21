@@ -28,8 +28,7 @@ st.title("Traffic Sign Recognition")
 st.write("Identify traffic signs in videos.")
 
 #logo
-st.sidebar.image("https://static.vecteezy.com/system/resources/previews/009/458/871/original/traffic-signs-icon-logo-design-template-vector.jpg", width=100)
-
+st.sidebar.image(os.path.join(os.getcwd(),'logo.png'))
 # center logo
 def local_css(file_name):
     with open(file_name) as f:
@@ -64,11 +63,12 @@ if uploaded_file is not None:
     subprocess.run(['ffmpeg', '-i', 'interface/testout_simple.mp4', '-c:v', 'libx264', '-preset', 'slow', '-crf', '22', '-c:a', 'copy', 'interface/testout_1.mp4'])
     f= open('interface/testout_1.mp4', 'rb')
     video_bytes = f.read()
-    st.video(video_bytes)
+    placeholder = st.video(video_bytes)
+    video_caption = st.markdown("<p style='text-align: center;color : grey;'>Original Video</p>", unsafe_allow_html=True)
 
     # making a prediction
 
-    if st.button("Classify"):
+    if st.button("Traffic Sign Detection", use_container_width=True):
         # Prepare the image data
         files={'file': open('interface/testout_1.mp4', 'rb')}
 
@@ -83,7 +83,8 @@ if uploaded_file is not None:
             subprocess.run(['ffmpeg', '-i', 'myvideo.mp4', '-c:v', 'libx264', '-preset', 'slow', '-crf', '22', '-c:a', 'copy', 'outputFromStreamlit.mp4'])
             with open('outputFromStreamlit.mp4', 'rb') as f:
                 video_bytes = f.read()
-            st.video(video_bytes)
+            placeholder.video(video_bytes)
+            video_caption.markdown("<p style='text-align: center;color : grey;'>Original Video with Detection</p>", unsafe_allow_html=True)
         else:
             st.markdown("**Oops**, something went wrong :sweat: Please try again.")
             print(res.status_code, res.content)

@@ -2,12 +2,10 @@ import streamlit as st
 import requests
 import os
 
-st.title("Creatation Team")
-st.write("Production Team by")
+st.title("Team")
 
 #logo
-st.sidebar.image("https://i.pinimg.com/474x/bb/7f/49/bb7f49fc358e5b2b45a735d349ded379.jpg", width=200)
-
+st.sidebar.image(os.path.join(os.getcwd(),'logo.png'))
 # center logo
 def local_css(file_name):
     with open(file_name) as f:
@@ -25,32 +23,50 @@ remote_css('https://fonts.googleapis.com/icon?family=Material+Icons')
 
 columns = st.columns(2)
 with columns[0]:
- st.image("https://ca.slack-edge.com/T02NE0241-U05400ZCNBG-f02a98a3286d-512", width=200)
+    st.image("https://ca.slack-edge.com/T02NE0241-U05400ZCNBG-f02a98a3286d-512", width=200)
 with columns[1]:
- st.text_area('Team Leader : Ludwig Matuschka', '''
-    info...
-    ''', height=130)
+    st.markdown("<p style='text-align: left;'>Team Leader : Ludwig Matuschka</p>", unsafe_allow_html=True)
+    st.markdown("<p style='text-align: left; background-color: #586E75;\
+                    border-width:3px; border-radius: 3px;\
+                    padding:20px; padding-left:20px; padding-top: 20px;\
+                    padding-right: 20px; height: 140px;'>\
+                        info ... \
+                    </p>", unsafe_allow_html=True)
 
 columns = st.columns(2)
 with columns[0]:
- st.image("https://ca.slack-edge.com/T02NE0241-U0546A39LD7-ac41db3e2be7-512", width=200)
+    st.image("https://ca.slack-edge.com/T02NE0241-U0546A39LD7-ac41db3e2be7-512", width=200)
 with columns[1]:
- st.text_area('Team Member : Madhu Jatheendran', '''
-    info...
-    ''', height=130)
+    st.markdown("<p style='text-align: left;'>Team Member : Madhu Jatheendran</p>", unsafe_allow_html=True)
+    st.markdown("<p style='text-align: left;background-color:#586E75;\
+                border-width:3px; border-radius: 3px;\
+                padding:20px; padding-left:20px; padding-top: 20px;\
+                padding-right: 20px; height: 140px;'>\
+                    Sometimes I feel like the incredible Hulk! But unfourtunatly I am too calm to ever transform to him\
+                        </p>", unsafe_allow_html=True)
 
 columns = st.columns(2)
 with columns[0]:
  st.image("https://ca.slack-edge.com/T02NE0241-U053L7GSJ14-4fe0152b6753-512", width=200)
 with columns[1]:
- st.text_area('Team member : Mohad Aly', '''
-    info...
-    ''', height=130)
+    st.markdown("<p style='text-align: left;'>Team Member : Mohamed Aly</p>", unsafe_allow_html=True)
+    st.markdown("<p style='text-align: left;background-color:#586E75;\
+                border-width:3px; border-radius: 3px;\
+                padding:20px; padding-left:20px; padding-top: 20px;\
+                padding-right: 20px; height: 140px;'>\
+                        I am the one and only Mohamend Aly. I am knocking you out with either the right\
+                        or the left, somtimes with a upper-cut, but mostly with an intense question.\
+                </p>", unsafe_allow_html=True)
 
 columns = st.columns(2)
 with columns[0]:
    st.image("https://ca.slack-edge.com/T02NE0241-U054G6P4KRR-89bb2943c4be-192", width=200)
 with columns[1]:
-   st.text_area('Team Members : James Tidsanu Nampradid', '''
-    I'm the worst person to be stuck with in a traffic jam.
-    ''', height=130)
+    st.markdown("<p style='text-align: left;'>Team Member : James Tidsanu Nampradid</p>", unsafe_allow_html=True)
+    st.markdown("<p style='text-align: left;background-color:#586E75;\
+                border-width:3px; border-radius: 3px;\
+                padding:20px; padding-left:20px; padding-top: 20px;\
+                padding-right: 20px; height: 140px;'>\
+                        I'm the worst person to be stuck with in a traffic jam...\
+                        Jokessssss!\
+                </p>", unsafe_allow_html=True)
