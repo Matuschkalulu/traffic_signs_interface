@@ -34,7 +34,7 @@ with st.columns(2)[0]:
     api_endpoint = " "
     files = {'image': uploaded_file}
 
-    # making API request
+    # making api request
     response = requests.post(api_endpoint, files=files)
 
     # check the api
@@ -42,6 +42,6 @@ with st.columns(2)[0]:
         result = response.json()
 
         # Display result
-        st.write("### Detection Result")
+        st.write("Detection Result")
         st.write(f"Is registration image: {result['is_registration_image']}")
         st.write(f"Confidence: {result['confidence']}")
