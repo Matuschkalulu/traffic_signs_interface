@@ -7,7 +7,7 @@ st.title("Traffic Sign Recognition")
 st.write("Identifie traffic signs in videos.")
 
 #logo
-st.sidebar.image("https://static.vecteezy.com/system/resources/previews/009/458/871/original/traffic-signs-icon-logo-design-template-vector.jpg", width=100)
+st.sidebar.image("https://i.pinimg.com/474x/bb/7f/49/bb7f49fc358e5b2b45a735d349ded379.jpg", width=200)
 
 # center logo
 def local_css(file_name):

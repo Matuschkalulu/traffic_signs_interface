@@ -2,11 +2,9 @@ import streamlit as st
 import requests
 from PIL import Image
 import os
-import subprocess
-
 from io import BytesIO
 import numpy as np
-import cv2
+
 
 # for the Streamlit interface
 st.title("Traffic Sign Recognition")
@@ -39,8 +37,7 @@ if uploaded_file is not None:
     # displaying the uploaded image
     image = Image.open(uploaded_file)
     print(image)
-    placeholder = st.image(image, caption="Uploaded Image", use_column_width=True)
-
+    st.image(image, caption="Uploaded Image", use_column_width=True)
     #pred_image = Image.open(io.BytesIO(image_bytes))
 
     # making a prediction
@@ -50,16 +47,17 @@ if uploaded_file is not None:
         files = {"file": image_data}
         print (files)
         #response = requests.post("https://trafficsignscode-ugznwmrhlq-ew.a.run.app/ImagePrediction/", files=files)
-
-        response = requests.post("http://localhost:8080/ImagePrediction/", files=files)
-        image_path = os.path.join(os.getcwd(),'output_image.png')
-        if os.path.exists(image_path):
-                    os.remove(image_path)
+        response = requests.post("https://trafficsignscode-ugznwmrhlq-ew.a.run.app/ImagePrediction/", files=files)
         print(response)
         if response.status_code == 200:
             # the prediction result
-            image_bytes = response.content
-            placeholder.image(image_bytes, use_column_width=True)
-
+            prediction = response.json()
+            #print(prediction)
+            st.image(os.path.join(os.getcwd(), 'image0.png'), )
+            if prediction['Actual Prediction Value'][0] >= 0.4:
+                st.error('This is an unreadable!') #, icon=f"\N:rotating_light:")
+                print(prediction)
+            if prediction['Actual Prediction Value'][0] < 0.4:
+                st.success('This is a readable!') #icon=f"\N:white_check_mark:")
         else:
             st.error("Failed to classify the image. Please try again.")
