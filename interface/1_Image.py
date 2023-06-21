@@ -11,7 +11,7 @@ import cv2
 st.title("Traffic Sign Recognition")
 st.write("Identify traffic signs in images.")
 
-st.sidebar.image("https://static.vecteezy.com/system/resources/previews/002/538/982/non_2x/traffic-concept-drawing-vector.jpg", width=200)
+st.sidebar.image("https://i.pinimg.com/474x/bb/7f/49/bb7f49fc358e5b2b45a735d349ded379.jpg", width=200)
 
 def local_css(file_name):
     with open(file_name) as f:
