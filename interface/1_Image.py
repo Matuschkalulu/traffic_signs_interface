@@ -5,7 +5,6 @@ import os
 import io
 from io import BytesIO
 import numpy as np
-import cv2
 
 # for the Streamlit interface
 st.title("Traffic Sign Recognition")
