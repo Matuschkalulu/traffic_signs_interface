@@ -1,13 +1,33 @@
+
 import streamlit as st
 import requests
 import os
+import base64
+import subprocess
+import io
+#def add_bg_from_local(image_file):
+   # with open(image_file, "rb") as image_file:
+        #encoded_string = base64.b64encode(image_file.read())
+    #st.markdown(
+    #f"""
+    #<style>
+    #.stApp {{
+        #background-image: url(data:image/{"png"};base64,{encoded_string.decode()});
+       # background-size: cover
+    #}}
+    #</style>
+    #""",
+    #unsafe_allow_html=True
+    #)
+#add_bg_from_local('png-clipart-marvel-avengers-illustration-avengers-group-close-up-comics-and-fantasy-various-comics-thumbnail.png')
+
 
 # for the Streamlit interface
 st.title("Traffic Sign Recognition")
-st.write("Identifie traffic signs in videos.")
+st.write("Identify traffic signs in videos.")
 
 #logo
-st.sidebar.image("https://i.pinimg.com/474x/bb/7f/49/bb7f49fc358e5b2b45a735d349ded379.jpg", width=200)
+st.sidebar.image("https://static.vecteezy.com/system/resources/previews/009/458/871/original/traffic-signs-icon-logo-design-template-vector.jpg", width=100)
 
 # center logo
 def local_css(file_name):
@@ -15,9 +35,10 @@ def local_css(file_name):
         st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
 
 # Loading CSS
-url_css = os.path.join(os.getcwd(),'interface', 'pages', 'frontend', 'css', 'streamlit.css')
-local_css(url_css)
 
+url_css = os.path.join(os.getcwd(), 'interface','pages', 'frontend', 'css', 'streamlit.css')
+
+local_css(url_css)
 
 def remote_css(url):
     st.markdown(f'<link href="{url}" rel="stylesheet">', unsafe_allow_html=True)
@@ -25,35 +46,43 @@ def remote_css(url):
 # Loading CSS
 
 remote_css('https://fonts.googleapis.com/icon?family=Material+Icons')
-
 uploaded_file = st.file_uploader("Choose a video...", type=["mp4", "mov", "svi", "mkv"])
-
 st.markdown('<style>...</style>', unsafe_allow_html=True)
 
 
 if uploaded_file is not None:
     # displaying the uploaded image
-    #video_file = open(uploaded_file, 'rb')
-    video_bytes = uploaded_file.read()
+
+    g = io.BytesIO(uploaded_file.read())  ## BytesIO Object
+    temporary_location = "interface/testout_simple.mp4"
+    subprocess.run(['ffmpeg', '-i', 'interface/testout_simple.mp4', '-c:v', 'libx264', '-preset', 'slow', '-crf', '22', '-c:a', 'copy', 'interface/testout_1.mp4'])
+    with open(temporary_location, 'wb') as out:  ## Open temporary file as bytes
+        out.write(g.read())  ## Read bytes into file
+    f= open('interface/testout_1.mp4', 'rb')
+    video_bytes = f.read()
     st.video(video_bytes)
 
     # making a prediction
+
     if st.button("Classify"):
         # Prepare the image data
-        video_data = uploaded_file.read()
+        print(uploaded_file)
+        video_data=uploaded_file.getvalue()
+        files={'file': open('interface/testout_1.mp4', 'rb')}
+        #res = requests.post("http://127.0.0.1:8000/VideoPrediction", files = files)
+        res = requests.post("http://localhost:8000/VideoPrediction", files = files)
+        #video_path = os.path.join(os.getcwd(),'outputFromStreamlit.mp4')
+        #if os.path.exists(video_path):
+            #os.remove(video_path)
 
-        # sending a request to API
-        recognition_url = " "
-        files = {"video": video_data}
-        response = requests.post(recognition_url, files=files)
-
-        if response.status_code == 200:
-            # the prediction result
-            prediction = response.json()
-            traffic_sign = prediction["traffic_sign"]
-            confidence = prediction["confidence"]
-
-            st.success(f"Predicted traffic sign: {traffic_sign}")
-            st.info(f"Confidence: {confidence}")
+        if res.status_code == 200:
+            video_bytes = res.content
+            with open('myvideo.mp4', 'wb') as f:
+                f.write(video_bytes)
+            subprocess.run(['ffmpeg', '-i', 'myvideo.mp4', '-c:v', 'libx264', '-preset', 'slow', '-crf', '22', '-c:a', 'copy', 'outputFromStreamlit.mp4'])
+            with open('outputFromStreamlit.mp4', 'rb') as f:
+                video_bytes = f.read()
+            st.video(video_bytes)
         else:
-            st.error("Failed to classify the image. Please try again.")
+            st.markdown("**Oops**, something went wrong :sweat: Please try again.")
+            print(res.status_code, res.content)

@@ -6,6 +6,7 @@ import io
 from io import BytesIO
 import numpy as np
 
+
 # for the Streamlit interface
 st.title("Traffic Sign Recognition")
 st.write("Identify traffic signs in images.")
