@@ -23,22 +23,51 @@ local_css(url_css)
 # Loading CSS
 remote_css('https://fonts.googleapis.com/icon?family=Material+Icons')
 
-st.image("https://ca.slack-edge.com/T02NE0241-U05400ZCNBG-f02a98a3286d-512", width=200)
-st.text_area('Team Leader : Ludwig Matuschka', '''
-    info...
-    ''', height=100)
+columns = st.columns(2)
+with columns[0]:
+ st.image("https://ca.slack-edge.com/T02NE0241-U05400ZCNBG-f02a98a3286d-512", width=200)
+with columns[1]:
+  st.markdown('**Team Leader : Ludwig Matuschka**')
+  text = '''
+  <p style="text-align: justify;">
+  write here...
+  </p>
+  '''
+  st.markdown(text, unsafe_allow_html=True)
 
-st.image("https://ca.slack-edge.com/T02NE0241-U0546A39LD7-ac41db3e2be7-512", width=200)
-st.text_area('Team Member : Madhu Jatheendran', '''
-    info...
-    ''', height=100)
 
-st.image("https://ca.slack-edge.com/T02NE0241-U053L7GSJ14-4fe0152b6753-512", width=200)
-st.text_area('Team member : Mohad Aly', '''
-    info...
-    ''', height=100)
+columns = st.columns(2)
+with columns[0]:
+ st.image("https://ca.slack-edge.com/T02NE0241-U0546A39LD7-ac41db3e2be7-512", width=200)
+with columns[1]:
+  st.markdown('**Team Member : Madhu Jatheendran**')
+  text = '''
+  <p style="text-align: justify;">
+  write here...
+  </p>
+  '''
+  st.markdown(text, unsafe_allow_html=True)
 
-st.image("https://ca.slack-edge.com/T02NE0241-U054G6P4KRR-89bb2943c4be-192", width=200)
-st.text_area('Team Members : James Tidsanu Nampradid', '''
-    info...
-    ''', height=100)
+columns = st.columns(2)
+with columns[0]:
+  st.image("https://ca.slack-edge.com/T02NE0241-U053L7GSJ14-4fe0152b6753-512", width=200)
+with columns[1]:
+  st.markdown('**Team member : Mohad Aly**')
+  text = '''
+  <p style="text-align: justify;">
+  write here...
+  </p>
+  '''
+  st.markdown(text, unsafe_allow_html=True)
+
+columns = st.columns(2)
+with columns[0]:
+    st.image("https://ca.slack-edge.com/T02NE0241-U054G6P4KRR-89bb2943c4be-192", width=200)
+with columns[1]:
+    st.markdown('**Team Members: James Tidsanu Nampradid**')
+    text = '''
+    <p style="text-align: justify;">
+    I am the worst person to stuck in traffic
+    </p>
+    '''
+    st.markdown(text, unsafe_allow_html=True)
