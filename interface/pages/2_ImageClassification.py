@@ -43,8 +43,6 @@ uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png
 st.markdown('<style>...</style>', unsafe_allow_html=True)
 
 
-
-
 if uploaded_file is not None:
     # displaying the uploaded image
     image = Image.open(uploaded_file)
@@ -59,16 +57,12 @@ if uploaded_file is not None:
         # Prepare the image data
         image_data = uploaded_file.getvalue()
         files = {"file": image_data}
-        print (files)
         #response = requests.post("https://trafficsignscode-ugznwmrhlq-ew.a.run.app/ImagePrediction/", files=files)
+
         response = requests.post("https://trafficsignscode-ugznwmrhlq-ew.a.run.app/ImagePrediction/", files=files)
-
-
-        response = requests.post("http://localhost:8080/ImagePrediction/", files=files)
         image_path = os.path.join(os.getcwd(),'output_image.png')
         if os.path.exists(image_path):
             os.remove(image_path)
-
 
         print(response)
         if response.status_code == 200:
