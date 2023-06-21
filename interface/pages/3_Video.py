@@ -3,8 +3,8 @@ import requests
 import os
 
 # for the Streamlit interface
-st.title("Traffic Sign Recognition")
-st.write("Identifie traffic signs in videos.")
+st.title("TRAFFIC SIGN RECONITION")
+st.write("IDENTIFY TRAFFIC SIGN IN VIDEO.")
 
 #logo
 st.sidebar.image("https://i.pinimg.com/474x/bb/7f/49/bb7f49fc358e5b2b45a735d349ded379.jpg", width=200)

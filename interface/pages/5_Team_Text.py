@@ -2,8 +2,8 @@ import streamlit as st
 import requests
 import os
 
-st.title("Creatation Team")
-st.write("Production Team by")
+st.title("CREATOR TEAM")
+st.write("PRODUCTION TEAM BY")
 
 #logo
 st.sidebar.image("https://i.pinimg.com/474x/bb/7f/49/bb7f49fc358e5b2b45a735d349ded379.jpg", width=200)
@@ -67,7 +67,7 @@ with columns[1]:
     st.markdown('**Team Members: James Tidsanu Nampradid**')
     text = '''
     <p style="text-align: justify;">
-    I am the worst person to stuck in traffic
+    I am the worst person to be stuck in traffic
     </p>
     '''
     st.markdown(text, unsafe_allow_html=True)

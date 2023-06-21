@@ -2,8 +2,8 @@ import streamlit as st
 import requests
 import os
 
-st.title("Traffic Sign Recognition")
-st.write("Detecting traffic signs")
+st.title("TRAFFIC SIGN RECONITION")
+st.write("DETECTING TRAFFIC SIGN")
 
 #logo
 st.sidebar.image("https://i.pinimg.com/474x/bb/7f/49/bb7f49fc358e5b2b45a735d349ded379.jpg", width=200)

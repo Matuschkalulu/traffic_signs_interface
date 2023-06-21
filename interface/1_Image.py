@@ -7,8 +7,8 @@ from io import BytesIO
 import numpy as np
 
 # for the Streamlit interface
-st.title("Traffic Sign Recognition")
-st.write("Identify traffic signs in images.")
+st.title("TRAFFIC SIGN RECONITION")
+st.write("IDENTIFY TRAFFIC SIGN IN IMAGE.")
 
 st.sidebar.image("https://i.pinimg.com/474x/bb/7f/49/bb7f49fc358e5b2b45a735d349ded379.jpg", width=200)
 
@@ -40,7 +40,7 @@ with st.columns(2)[0]:
         print(image)
         st.image(image, caption="Uploaded Image", use_column_width=True)
         #pred_image = Image.open(io.BytesIO(image_bytes))
-    
+
         # making a prediction
         if st.button("Classify"):
             # Prepare the image data
