@@ -2,6 +2,11 @@ import streamlit as st
 import requests
 from PIL import Image
 import os
+import io
+from io import BytesIO
+import numpy as np
+import cv2
+
 
 import subprocess
 
@@ -13,6 +18,7 @@ import cv2
 # for the Streamlit interface
 st.title("Traffic Sign Recognition")
 st.write("Identify traffic signs in images.")
+
 
 st.sidebar.image("https://static.vecteezy.com/system/resources/previews/009/458/871/original/traffic-signs-icon-logo-design-template-vector.jpg", width=100)
 
@@ -30,12 +36,12 @@ def remote_css(url):
 
 # Loading CSS
     local_css("frontend/css/streamlit.css")
-
     remote_css('https://fonts.googleapis.com/icon?family=Material+Icons')
 
 uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png"])
 
 st.markdown('<style>...</style>', unsafe_allow_html=True)
+
 
 
 
@@ -55,6 +61,9 @@ if uploaded_file is not None:
         files = {"file": image_data}
         print (files)
         #response = requests.post("https://trafficsignscode-ugznwmrhlq-ew.a.run.app/ImagePrediction/", files=files)
+        response = requests.post("https://trafficsignscode-ugznwmrhlq-ew.a.run.app/ImagePrediction/", files=files)
+
+
         response = requests.post("http://localhost:8080/ImagePrediction/", files=files)
         image_path = os.path.join(os.getcwd(),'output_image.png')
         if os.path.exists(image_path):
