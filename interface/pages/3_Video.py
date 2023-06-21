@@ -7,7 +7,7 @@ st.title("Traffic Sign Recognition")
 st.write("Identifie traffic signs in videos.")
 
 #logo
-st.sidebar.image("https://static.vecteezy.com/system/resources/previews/009/458/871/original/traffic-signs-icon-logo-design-template-vector.jpg", width=100)
+st.sidebar.image("https://i.pinimg.com/474x/bb/7f/49/bb7f49fc358e5b2b45a735d349ded379.jpg", width=200)
 
 # center logo
 def local_css(file_name):
@@ -15,7 +15,7 @@ def local_css(file_name):
         st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
 
 # Loading CSS
-url_css = os.path.join(os.getcwd(), 'pages', 'frontend', 'css', 'streamlit.css')
+url_css = os.path.join(os.getcwd(),'interface', 'pages', 'frontend', 'css', 'streamlit.css')
 local_css(url_css)
 
 
@@ -33,9 +33,9 @@ st.markdown('<style>...</style>', unsafe_allow_html=True)
 
 if uploaded_file is not None:
     # displaying the uploaded image
-    video_file = open(uploaded_file, 'rb')
-    video_bytes = video_file.read()
-    st.video(video_bytes, caption="Uploaded Video", use_column_width=True)
+    #video_file = open(uploaded_file, 'rb')
+    video_bytes = uploaded_file.read()
+    st.video(video_bytes)
 
     # making a prediction
     if st.button("Classify"):

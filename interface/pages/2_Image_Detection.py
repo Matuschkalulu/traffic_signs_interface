@@ -2,10 +2,7 @@ import streamlit as st
 import requests
 from PIL import Image
 import os
-
-import subprocess
-
-
+import io
 from io import BytesIO
 import numpy as np
 import cv2
@@ -30,7 +27,6 @@ def remote_css(url):
 
 # Loading CSS
     local_css("frontend/css/streamlit.css")
-
     remote_css('https://fonts.googleapis.com/icon?family=Material+Icons')
 
 uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png"])
@@ -38,14 +34,11 @@ uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png
 st.markdown('<style>...</style>', unsafe_allow_html=True)
 
 
-
 if uploaded_file is not None:
     # displaying the uploaded image
     image = Image.open(uploaded_file)
     print(image)
     placeholder = st.image(image, caption="Uploaded Image", use_column_width=True)
-
-
     #pred_image = Image.open(io.BytesIO(image_bytes))
 
     # making a prediction
@@ -60,12 +53,10 @@ if uploaded_file is not None:
         if os.path.exists(image_path):
             os.remove(image_path)
 
-
         print(response)
         if response.status_code == 200:
             # the prediction result
             image_bytes = response.content
             placeholder.image(image_bytes, use_column_width=True)
-
         else:
             st.error("Failed to classify the image. Please try again.")
