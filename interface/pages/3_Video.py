@@ -1,4 +1,5 @@
 
+#comment
 import streamlit as st
 import requests
 import os
@@ -49,15 +50,18 @@ remote_css('https://fonts.googleapis.com/icon?family=Material+Icons')
 uploaded_file = st.file_uploader("Choose a video...", type=["mp4", "mov", "svi", "mkv"])
 st.markdown('<style>...</style>', unsafe_allow_html=True)
 
+video_path = os.path.join(os.getcwd(),'interface/testout_1.mp4')
+if os.path.exists(video_path):
+    os.remove(video_path)
 
 if uploaded_file is not None:
     # displaying the uploaded image
 
     g = io.BytesIO(uploaded_file.read())  ## BytesIO Object
     temporary_location = "interface/testout_simple.mp4"
-    subprocess.run(['ffmpeg', '-i', 'interface/testout_simple.mp4', '-c:v', 'libx264', '-preset', 'slow', '-crf', '22', '-c:a', 'copy', 'interface/testout_1.mp4'])
     with open(temporary_location, 'wb') as out:  ## Open temporary file as bytes
         out.write(g.read())  ## Read bytes into file
+    subprocess.run(['ffmpeg', '-i', 'interface/testout_simple.mp4', '-c:v', 'libx264', '-preset', 'slow', '-crf', '22', '-c:a', 'copy', 'interface/testout_1.mp4'])
     f= open('interface/testout_1.mp4', 'rb')
     video_bytes = f.read()
     st.video(video_bytes)
@@ -66,14 +70,11 @@ if uploaded_file is not None:
 
     if st.button("Classify"):
         # Prepare the image data
-        print(uploaded_file)
-        video_data=uploaded_file.getvalue()
         files={'file': open('interface/testout_1.mp4', 'rb')}
-        #res = requests.post("http://127.0.0.1:8000/VideoPrediction", files = files)
-        res = requests.post("http://localhost:8000/VideoPrediction", files = files)
-        #video_path = os.path.join(os.getcwd(),'outputFromStreamlit.mp4')
-        #if os.path.exists(video_path):
-            #os.remove(video_path)
+
+        #res = requests.post("http://localhost:8000/VideoPrediction", files = files)
+        res = requests.post("https://trafficsignscode-ugznwmrhlq-ew.a.run.app/VideoPrediction/", files = files)
+
 
         if res.status_code == 200:
             video_bytes = res.content
@@ -86,3 +87,11 @@ if uploaded_file is not None:
         else:
             st.markdown("**Oops**, something went wrong :sweat: Please try again.")
             print(res.status_code, res.content)
+
+        output_video_path = os.path.join(os.getcwd(),'outputFromStreamlit.mp4')
+        if os.path.exists(output_video_path):
+            os.remove(output_video_path)
+
+        input_video_path = os.path.join(os.getcwd(),'interface/testout_1.mp4')
+        if os.path.exists(input_video_path):
+            os.remove(input_video_path)
