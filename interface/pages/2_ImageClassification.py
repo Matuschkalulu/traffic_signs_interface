@@ -55,7 +55,7 @@ if uploaded_file is not None:
         files = {"file": image_data}
         print (files)
         #response = requests.post("https://trafficsignscode-ugznwmrhlq-ew.a.run.app/ImagePrediction/", files=files)
-        response = requests.post("http://localhost:8080/ImagePrediction/", files=files)
+        response = requests.post("https://trafficsignscode-ugznwmrhlq-ew.a.run.app/ImagePrediction/", files=files)
         image_path = os.path.join(os.getcwd(),'output_image.png')
         if os.path.exists(image_path):
             os.remove(image_path)
