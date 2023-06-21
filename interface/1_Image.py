@@ -25,7 +25,7 @@ local_css(url_css)
 def remote_css(url):
     st.markdown(f'<link href="{url}" rel="stylesheet">', unsafe_allow_html=True)
 
-# Loading CSS
+    # Loading CSS
     local_css("frontend/css/streamlit.css")
     remote_css('https://fonts.googleapis.com/icon?family=Material+Icons')
 
@@ -37,7 +37,6 @@ st.markdown('<style>...</style>', unsafe_allow_html=True)
 if uploaded_file is not None:
     # displaying the uploaded image
     image = Image.open(uploaded_file)
-    print(image)
     st.image(image, caption="Uploaded Image", use_column_width=True)
     #pred_image = Image.open(io.BytesIO(image_bytes))
 
@@ -53,10 +52,10 @@ if uploaded_file is not None:
         if response.status_code == 200:
             # the prediction result
             prediction = response.json()
-            if prediction['Value'] >= 0.4:
+            if prediction['Value'] > 0.6:
                 st.error('This is an unreadable!') #, icon=f"\N:rotating_light:")
                 print(prediction)
-            if prediction['Value'] < 0.4:
+            else:
                 st.success('This is a readable!') #icon=f"\N:white_check_mark:")
         else:
             st.error("Failed to classify the image. Please try again.")
