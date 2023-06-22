@@ -48,6 +48,7 @@ with columns[1]:
   '''
   st.markdown(text, unsafe_allow_html=True)
 
+
 columns = st.columns(2)
 with columns[0]:
   st.image("https://ca.slack-edge.com/T02NE0241-U053L7GSJ14-4fe0152b6753-512", width=200)
@@ -59,6 +60,7 @@ with columns[1]:
   </p>
   '''
   st.markdown(text, unsafe_allow_html=True)
+
 
 columns = st.columns(2)
 with columns[0]:
