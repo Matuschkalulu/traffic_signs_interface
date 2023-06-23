@@ -54,8 +54,8 @@ with columns[1]:
                 border-width:3px; border-radius: 3px;\
                 padding:20px; padding-left:20px; padding-top: 20px;\
                 padding-right: 20px; height: 140px;'>\
-                        MSc theoretical particle physics and data science enthusiast. My best friends\
-                        are Kaggle, Stack Overflow, Towards Data Science and recently ChatGPT.\
+                        I am the one and only Mohamend Aly. I am knocking you out with either the right\
+                        or the left, somtimes with a upper-cut, but mostly with an intense question.\
                 </p>", unsafe_allow_html=True)
 
 columns = st.columns(2)
