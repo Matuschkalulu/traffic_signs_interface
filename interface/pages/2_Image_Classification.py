@@ -5,10 +5,6 @@ import os
 import io
 from io import BytesIO
 import numpy as np
-
-
-
-
 from io import BytesIO
 import numpy as np
 
@@ -30,7 +26,7 @@ local_css(url_css)
 def remote_css(url):
     st.markdown(f'<link href="{url}" rel="stylesheet">', unsafe_allow_html=True)
 
-# Loading CSS
+    # Loading CSS
     local_css("frontend/css/streamlit.css")
     remote_css('https://fonts.googleapis.com/icon?family=Material+Icons')
 
