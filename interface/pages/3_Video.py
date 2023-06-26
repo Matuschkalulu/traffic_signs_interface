@@ -42,13 +42,16 @@ local_css(url_css)
 
 def remote_css(url):
     st.markdown(f'<link href="{url}" rel="stylesheet">', unsafe_allow_html=True)
+    # Loading CSS
+    print('CSS Loading Done')
+    local_css("frontend/css/streamlit.css")
+    remote_css('https://fonts.googleapis.com/icon?family=Material+Icons')
 
 # Loading CSS
+#remote_css('https://fonts.googleapis.com/icon?family=Material+Icons')
 
-remote_css('https://fonts.googleapis.com/icon?family=Material+Icons')
 uploaded_file = st.file_uploader("Choose a video...", type=["mp4", "mov", "svi", "mkv"])
 st.markdown('<style>...</style>', unsafe_allow_html=True)
-print('CSS Loading Done')
 
 video_path = os.path.join(os.getcwd(),'interface/testout_1.mp4')
 if os.path.exists(video_path):
@@ -74,7 +77,6 @@ if uploaded_file is not None:
     video_caption = st.markdown("<p style='text-align: center;color : grey;'>Original Video</p>", unsafe_allow_html=True)
 
     # making a prediction
-
     if st.button("Traffic Sign Detection", use_container_width=True):
         # Prepare the image data
         files={'file': open('interface/testout_1.mp4', 'rb')}
