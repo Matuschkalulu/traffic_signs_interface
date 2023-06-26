@@ -77,7 +77,6 @@ if uploaded_file is not None:
     video_caption = st.markdown("<p style='text-align: center;color : grey;'>Original Video</p>", unsafe_allow_html=True)
 
     # making a prediction
-
     if st.button("Traffic Sign Detection", use_container_width=True):
         # Prepare the image data
         files={'file': open('interface/testout_1.mp4', 'rb')}
